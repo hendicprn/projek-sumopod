@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { NavLink, Routes, Route } from "react-router-dom";
 import "./App.css";
+
 
 const workflowSteps = [
   {
@@ -35,6 +37,72 @@ const workflowSteps = [
       "Mengirim link pembayaran ke pelanggan yang sudah tertarik paketnya.",
   },
 ];
+
+const whatsappContacts = [
+  {
+    id: 1,
+    name: "Ahmad Fauzi",
+    tag: "Lead Baru",
+    phone: "+62 812-3456-7890",
+    status: "Belum dihubungi",
+    lastMessage: "Assalamualaikum, saya mau tanya paket Umrah.",
+  },
+  {
+    id: 2,
+    name: "Siti Nurhaliza",
+    tag: "Prospek Hangat",
+    phone: "+62 813-1111-2222",
+    status: "Sudah di-follow up",
+    lastMessage: "InsyaAllah berangkat bulan depan, mohon info detail.",
+  },
+  {
+    id: 3,
+    name: "Budi Santoso",
+    tag: "Customer",
+    phone: "+62 815-9999-0000",
+    status: "Sudah DP",
+    lastMessage: "Sudah saya transfer DP, mohon konfirmasi ya.",
+  },
+];
+
+const initialChatsByContact = {
+  1: [
+    {
+      from: "customer",
+      text: "Assalamualaikum, saya mau tanya paket Umrah untuk 2025.",
+      time: "09:10",
+    },
+    {
+      from: "agent",
+      text: "Waalaikumsalam Pak Ahmad, siap. Bapak berangkat dari kota mana?",
+      time: "09:12",
+    },
+  ],
+  2: [
+    {
+      from: "customer",
+      text: "Halo kak, saya tertarik paket Umrah Plus Turki.",
+      time: "14:02",
+    },
+    {
+      from: "agent",
+      text: "Baik Bu Siti, kami punya beberapa pilihan paket yang cocok.",
+      time: "14:05",
+    },
+  ],
+  3: [
+    {
+      from: "customer",
+      text: "DP sudah saya transfer barusan.",
+      time: "19:30",
+    },
+    {
+      from: "agent",
+      text: "Alhamdulillah, kami akan kirimkan invoice dan itinerary lengkap.",
+      time: "19:35",
+    },
+  ],
+};
 
 
 function App() {
@@ -219,18 +287,152 @@ function WorkflowBuilder() {
   );
 }
 
-
 function WhatsAppCRM() {
+  const [selectedId, setSelectedId] = useState(whatsappContacts[0].id);
+  const [chatsByContact, setChatsByContact] = useState(initialChatsByContact);
+  const [messageInput, setMessageInput] = useState("");
+
+  const selectedContact = whatsappContacts.find(
+    (c) => c.id === selectedId
+  );
+
+  const messages = chatsByContact[selectedId] || [];
+
+  const handleSendMessage = (e) => {
+    e.preventDefault();
+    const trimmed = messageInput.trim();
+    if (!trimmed) return;
+
+    const newMessage = {
+      from: "agent",
+      text: trimmed,
+      time: "Sekarang",
+    };
+
+    setChatsByContact((prev) => ({
+      ...prev,
+      [selectedId]: [...(prev[selectedId] || []), newMessage],
+    }));
+
+    setMessageInput("");
+  };
+
   return (
     <div>
       <h2 className="page-title">WhatsApp CRM</h2>
       <p className="page-description">
-        Halaman ini akan berisi daftar kontak, status, dan chat WhatsApp
-        (dummy data dulu untuk portofolio).
+        Contoh tampilan CRM untuk mengelola kontak dan percakapan WhatsApp.
+        Ini hanya data dummy, tapi cukup untuk mendemokan fitur ke HR / client.
       </p>
+
+      <div className="whatsapp-layout">
+        {/* Sidebar kontak */}
+        <section className="whatsapp-sidebar">
+          <div className="whatsapp-sidebar-header">
+            <h3 className="section-title">Kontak</h3>
+            <p className="section-subtitle">
+              Daftar lead dan customer yang terhubung via WhatsApp.
+            </p>
+          </div>
+
+          <input
+            type="text"
+            placeholder="Cari nama atau nomor..."
+            className="whatsapp-search"
+          />
+
+          <div className="whatsapp-contact-list">
+            {whatsappContacts.map((contact) => (
+              <button
+                key={contact.id}
+                className={
+                  "contact-item" +
+                  (contact.id === selectedId ? " contact-item-active" : "")
+                }
+                onClick={() => setSelectedId(contact.id)}
+              >
+                <div className="contact-main">
+                  <div className="contact-name">{contact.name}</div>
+                  <div className="contact-last-message">
+                    {contact.lastMessage}
+                  </div>
+                </div>
+                <div className="contact-meta">
+                  <span className="contact-tag">{contact.tag}</span>
+                  <span className="contact-status">{contact.status}</span>
+                </div>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        {/* Area chat */}
+        <section className="whatsapp-chat">
+          <div className="whatsapp-chat-header">
+            <div>
+              <div className="chat-contact-name">
+                {selectedContact?.name}
+              </div>
+              <div className="chat-contact-info">
+                {selectedContact?.phone} · {selectedContact?.tag}
+              </div>
+            </div>
+            <div className="chat-status-pill">Online</div>
+          </div>
+
+          <div className="whatsapp-chat-body">
+            {messages.length === 0 && (
+              <div className="chat-empty">
+                Belum ada percakapan. Mulai kirim pesan ke pelanggan ini.
+              </div>
+            )}
+
+            {messages.map((msg, index) => (
+              <div
+                key={index}
+                className={
+                  "chat-bubble-row " +
+                  (msg.from === "agent"
+                    ? "chat-bubble-row-agent"
+                    : "chat-bubble-row-customer")
+                }
+              >
+                <div
+                  className={
+                    "chat-bubble " +
+                    (msg.from === "agent"
+                      ? "chat-bubble-agent"
+                      : "chat-bubble-customer")
+                  }
+                >
+                  <div className="chat-text">{msg.text}</div>
+                  <div className="chat-time">{msg.time}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <form
+            className="whatsapp-chat-input-area"
+            onSubmit={handleSendMessage}
+          >
+            <input
+              type="text"
+              className="whatsapp-chat-input"
+              placeholder="Ketik pesan untuk pelanggan..."
+              value={messageInput}
+              onChange={(e) => setMessageInput(e.target.value)}
+            />
+            <button type="submit" className="whatsapp-send-button">
+              Kirim
+            </button>
+          </form>
+        </section>
+      </div>
     </div>
   );
 }
+
 
 function Payments() {
   return (
