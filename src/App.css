@@ -93,3 +93,176 @@
   font-size: 0.9rem;
   color: #9ca3af;
 }
+
+/* === Workflow Builder === */
+
+.workflow-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr) 280px;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.workflow-column {
+  background: #020617;
+  border-radius: 0.75rem;
+  border: 1px solid #1e293b;
+  padding: 1rem;
+}
+
+.section-title {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.section-subtitle {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+.node-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.node-item {
+  padding: 0.6rem 0.7rem;
+  border-radius: 0.6rem;
+  border: 1px solid #1e293b;
+  background: #020617;
+}
+
+.node-item p {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.node-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.node-trigger {
+  border-color: #22c55e33;
+}
+
+.node-whatsapp {
+  border-color: #22c55e66;
+}
+
+.node-condition {
+  border-color: #facc1533;
+}
+
+.node-delay {
+  border-color: #38bdf833;
+}
+
+.node-payment {
+  border-color: #f9731633;
+}
+
+.pill {
+  color: #020617;
+}
+
+.pill-trigger {
+  background: #22c55e;
+}
+
+.pill-whatsapp {
+  background: #22c55e;
+}
+
+.pill-condition {
+  background: #facc15;
+}
+
+.pill-delay {
+  background: #38bdf8;
+}
+
+.pill-payment {
+  background: #f97316;
+}
+
+.workflow-canvas {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.workflow-step {
+  background: #020617;
+  border-radius: 0.75rem;
+  border: 1px solid #1e293b;
+  padding: 0.75rem;
+}
+
+.workflow-step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.step-number {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.workflow-step-title {
+  margin: 0 0 0.3rem 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.workflow-step-description {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.workflow-arrow {
+  text-align: center;
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.detail-card {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid #1e293b;
+  background: #020617;
+}
+
+.detail-card h4 {
+  margin: 0 0 0.45rem 0;
+  font-size: 0.9rem;
+}
+
+.detail-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.detail-text {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
