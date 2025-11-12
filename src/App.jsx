@@ -104,6 +104,55 @@ const initialChatsByContact = {
   ],
 };
 
+const paymentProfiles = [
+  {
+    id: "sg",
+    country: "Singapore",
+    currency: "SGD",
+    gateway: "Hitpay",
+    fees: "3.2% + SGD 0.50",
+    settlement: "T+2 (2 hari kerja)",
+    description:
+      "Cocok untuk market Singapura dengan dukungan kartu dan PayNow.",
+    methods: [
+      { type: "Card", label: "Visa / Mastercard", status: "Active" },
+      { type: "Wallet", label: "PayNow", status: "Active" },
+      { type: "Bank", label: "Local Bank Transfer", status: "Active" },
+    ],
+  },
+  {
+    id: "id",
+    country: "Indonesia",
+    currency: "IDR",
+    gateway: "Midtrans / Xendit",
+    fees: "2.9% + IDR 2.000",
+    settlement: "T+1 (1 hari kerja)",
+    description:
+      "Fokus ke pembayaran lokal Indonesia dengan VA dan QRIS.",
+    methods: [
+      { type: "VA", label: "Virtual Account (BCA, BNI, Mandiri)", status: "Active" },
+      { type: "QR", label: "QRIS", status: "Active" },
+      { type: "Card", label: "Kartu Kredit Lokal", status: "Planned" },
+    ],
+  },
+  {
+    id: "sa",
+    country: "Saudi Arabia",
+    currency: "SAR",
+    gateway: "HyperPay",
+    fees: "3.5% + SAR 0.50",
+    settlement: "T+3 (3 hari kerja)",
+    description:
+      "Cocok untuk jamaah yang membayar langsung menggunakan mata uang SAR.",
+    methods: [
+      { type: "Card", label: "Visa / Mastercard / Mada", status: "Active" },
+      { type: "Wallet", label: "Local Wallet", status: "Planned" },
+      { type: "Cash", label: "Cash on Arrival", status: "Manual" },
+    ],
+  },
+];
+
+
 
 function App() {
   return (
@@ -433,18 +482,146 @@ function WhatsAppCRM() {
   );
 }
 
-
 function Payments() {
+  const [selectedProfileId, setSelectedProfileId] = useState("sg");
+
+  const selectedProfile =
+    paymentProfiles.find((p) => p.id === selectedProfileId) ||
+    paymentProfiles[0];
+
   return (
     <div>
       <h2 className="page-title">Payment Gateway</h2>
       <p className="page-description">
-        Di sini nanti kita buat konfigurasi payment multi negara, mata uang,
-        dan metode pembayaran.
+        Contoh konfigurasi payment gateway multi negara seperti Hitpay.
+        Halaman ini menunjukkan bagaimana platform mengatur negara, mata
+        uang, dan metode pembayaran untuk bisnis Umrah.
       </p>
+
+      <div className="payments-layout">
+        {/* Kolom kiri: pilih negara / profile */}
+        <section className="payments-column">
+          <h3 className="section-title">Profil Negara</h3>
+          <p className="section-subtitle">
+            Pilih negara untuk melihat konfigurasi payment gateway dan
+            metode pembayaran yang aktif.
+          </p>
+
+          <div className="payment-profile-list">
+            {paymentProfiles.map((profile) => (
+              <button
+                key={profile.id}
+                className={
+                  "payment-profile-item" +
+                  (profile.id === selectedProfileId
+                    ? " payment-profile-item-active"
+                    : "")
+                }
+                onClick={() => setSelectedProfileId(profile.id)}
+              >
+                <div className="payment-profile-main">
+                  <div className="payment-profile-country">
+                    {profile.country}
+                  </div>
+                  <div className="payment-profile-gateway">
+                    Gateway: {profile.gateway}
+                  </div>
+                </div>
+                <div className="payment-profile-meta">
+                  <span className="payment-pill">
+                    Currency: {profile.currency}
+                  </span>
+                  <span className="payment-fees">{profile.fees}</span>
+                </div>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        {/* Kolom tengah: detail konfigurasi untuk negara terpilih */}
+        <section className="payments-column">
+          <h3 className="section-title">
+            Konfigurasi {selectedProfile.country}
+          </h3>
+          <p className="section-subtitle">{selectedProfile.description}</p>
+
+          <div className="payment-detail-card">
+            <div className="payment-detail-row">
+              <span className="detail-label">Gateway Utama</span>
+              <span className="detail-value">{selectedProfile.gateway}</span>
+            </div>
+            <div className="payment-detail-row">
+              <span className="detail-label">Mata Uang</span>
+              <span className="detail-value">
+                {selectedProfile.currency}
+              </span>
+            </div>
+            <div className="payment-detail-row">
+              <span className="detail-label">Biaya</span>
+              <span className="detail-value">{selectedProfile.fees}</span>
+            </div>
+            <div className="payment-detail-row">
+              <span className="detail-label">Settlement</span>
+              <span className="detail-value">
+                {selectedProfile.settlement}
+              </span>
+            </div>
+          </div>
+
+          <div className="payment-info-note">
+            Catatan: di sistem production, halaman ini biasanya terhubung ke
+            API gateway (Hitpay, Midtrans, HyperPay, dll) untuk mengaktifkan
+            atau menonaktifkan metode pembayaran secara real-time. Di sini
+            kita tampilkan versi demo untuk portofolio.
+          </div>
+        </section>
+
+        {/* Kolom kanan: metode pembayaran */}
+        <section className="payments-column">
+          <h3 className="section-title">Metode Pembayaran</h3>
+          <p className="section-subtitle">
+            Daftar metode pembayaran yang dikonfigurasi untuk negara ini.
+          </p>
+
+          <div className="payment-method-list">
+            {selectedProfile.methods.map((method, index) => (
+              <div key={index} className="payment-method-item">
+                <div className="payment-method-main">
+                  <span className="payment-method-type">
+                    {method.type}
+                  </span>
+                  <span className="payment-method-label">
+                    {method.label}
+                  </span>
+                </div>
+                <span
+                  className={
+                    "payment-method-status payment-method-status-" +
+                    method.status.toLowerCase()
+                  }
+                >
+                  {method.status}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div className="payment-info-note">
+            Status:
+            <br />
+            <strong>Active</strong> = sudah bisa digunakan oleh pelanggan.
+            <br />
+            <strong>Planned</strong> = dalam tahap pengembangan.
+            <br />
+            <strong>Manual</strong> = proses masih dilakukan secara manual
+            (contoh: cash on arrival).
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
+
 
 function UmrahMarketplace() {
   return (

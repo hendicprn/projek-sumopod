@@ -499,4 +499,178 @@
   filter: brightness(1.05);
 }
 
+/* === Payment Gateway === */
+
+.payments-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1.1fr) 280px;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.payments-column {
+  background: #020617;
+  border-radius: 0.75rem;
+  border: 1px solid #1e293b;
+  padding: 0.9rem;
+}
+
+.payment-profile-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+
+.payment-profile-item {
+  width: 100%;
+  text-align: left;
+  border-radius: 0.7rem;
+  border: 1px solid #1f2937;
+  background: #020617;
+  padding: 0.55rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  cursor: pointer;
+}
+
+.payment-profile-item:hover {
+  background: #050816;
+}
+
+.payment-profile-item-active {
+  border-color: #22c55e;
+  background: #022c22;
+}
+
+.payment-profile-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.payment-profile-country {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.payment-profile-gateway {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.payment-profile-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.payment-pill {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: #0f172a;
+  color: #bbf7d0;
+}
+
+.payment-fees {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+/* Detail konfigurasi */
+
+.payment-detail-card {
+  margin-top: 0.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid #1e293b;
+  background: #020617;
+  padding: 0.7rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.payment-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.detail-label {
+  color: #9ca3af;
+}
+
+.detail-value {
+  font-weight: 600;
+}
+
+.payment-info-note {
+  margin-top: 0.7rem;
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+/* Metode pembayaran */
+
+.payment-method-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.payment-method-item {
+  border-radius: 0.6rem;
+  border: 1px solid #1e293b;
+  background: #020617;
+  padding: 0.5rem 0.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.payment-method-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.payment-method-type {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.payment-method-label {
+  font-size: 0.88rem;
+}
+
+.payment-method-status {
+  font-size: 0.75rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+}
+
+.payment-method-status-active {
+  background: #22c55e;
+  color: #022c22;
+  font-weight: 600;
+}
+
+.payment-method-status-planned {
+  background: #facc15;
+  color: #422006;
+  font-weight: 600;
+}
+
+.payment-method-status-manual {
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+
 
