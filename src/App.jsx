@@ -152,6 +152,83 @@ const paymentProfiles = [
   },
 ];
 
+const umrahPackages = [
+  {
+    id: 1,
+    name: "Umrah Reguler Hemat",
+    price: 28000000,
+    airline: "Garuda Indonesia",
+    duration: "9 Hari",
+    city: "Jakarta",
+    vendor: "Barokah Travel",
+    hotel: "Hotel bintang 3 dekat Masjid Nabawi",
+    departure: "15 Januari 2025",
+    seatsLeft: 8,
+    status: "Tersedia",
+    highlights: [
+      "Sudah termasuk makan 3x sehari",
+      "City tour Madinah",
+      "Pembimbing ustadz berpengalaman",
+    ],
+  },
+  {
+    id: 2,
+    name: "Umrah Premium Plus Turki",
+    price: 42000000,
+    airline: "Turkish Airlines",
+    duration: "12 Hari",
+    city: "Surabaya",
+    vendor: "Nurul Huda Tour",
+    hotel: "Hotel bintang 4 di Makkah & Madinah",
+    departure: "20 Februari 2025",
+    seatsLeft: 5,
+    status: "Promo",
+    highlights: [
+      "Transit & city tour Istanbul",
+      "Hotel dekat Masjidil Haram",
+      "Group kecil, max 25 jamaah",
+    ],
+  },
+  {
+    id: 3,
+    name: "Umrah Eksekutif VIP",
+    price: 55000000,
+    airline: "Saudi Airlines",
+    duration: "10 Hari",
+    city: "Jakarta",
+    vendor: "Makkah First Travel",
+    hotel: "Hotel bintang 5 view Ka'bah",
+    departure: "10 Maret 2025",
+    seatsLeft: 2,
+    status: "Tersedia",
+    highlights: [
+      "Business class (optional upgrade)",
+      "Handling bagasi full oleh tim",
+      "Kamar hanya 2 orang / kamar",
+    ],
+  },
+  {
+    id: 4,
+    name: "Umrah Plus Dubai",
+    price: 49000000,
+    airline: "Emirates",
+    duration: "11 Hari",
+    city: "Medan",
+    vendor: "Al Hijaz Wisata",
+    hotel: "Hotel bintang 4 di Makkah & Madinah",
+    departure: "5 April 2025",
+    seatsLeft: 0,
+    status: "Penuh",
+    highlights: [
+      "City tour Dubai & Burj Khalifa (photo stop)",
+      "Kunjungan desert safari",
+      "Cocok untuk keluarga",
+    ],
+  },
+];
+
+
+
 
 
 function App() {
@@ -624,15 +701,148 @@ function Payments() {
 
 
 function UmrahMarketplace() {
+  const [cityFilter, setCityFilter] = useState("All");
+  const [selectedId, setSelectedId] = useState(umrahPackages[0].id);
+
+  const filteredPackages = umrahPackages.filter(
+    (pkg) => cityFilter === "All" || pkg.city === cityFilter
+  );
+
+  const selectedPackage =
+    filteredPackages.find((pkg) => pkg.id === selectedId) ||
+    filteredPackages[0] ||
+    umrahPackages[0];
+
   return (
     <div>
       <h2 className="page-title">Marketplace Umrah</h2>
       <p className="page-description">
-        Halaman ini akan menampilkan daftar paket Umrah beserta harga,
-        maskapai, dan vendor. Cocok untuk demo marketplace travel.
+        Contoh tampilan marketplace paket Umrah. Pilih paket di sebelah kiri
+        untuk melihat detail lengkap di panel kanan.
       </p>
+
+      <div className="umrah-layout">
+        {/* Kiri: filter + daftar paket */}
+        <section className="umrah-list">
+          <div className="umrah-filter-bar">
+            <select
+              value={cityFilter}
+              onChange={(e) => setCityFilter(e.target.value)}
+              className="umrah-select"
+            >
+              <option value="All">Semua Kota</option>
+              <option value="Jakarta">Jakarta</option>
+              <option value="Surabaya">Surabaya</option>
+              <option value="Medan">Medan</option>
+            </select>
+          </div>
+
+          <div className="umrah-grid">
+            {filteredPackages.map((pkg) => (
+              <button
+                key={pkg.id}
+                className={
+                  "umrah-card" +
+                  (pkg.id === selectedId ? " umrah-card-active" : "")
+                }
+                onClick={() => setSelectedId(pkg.id)}
+              >
+                <div className="umrah-card-body">
+                  <h3 className="umrah-name">{pkg.name}</h3>
+                  <p className="umrah-price">
+                    Rp {pkg.price.toLocaleString("id-ID")}
+                  </p>
+                  <p className="umrah-info">
+                    ✈️ {pkg.airline} · ⏱ {pkg.duration}
+                  </p>
+                  <p className="umrah-city">📍 {pkg.city}</p>
+                  <span
+                    className={
+                      "umrah-status " +
+                      (pkg.status === "Tersedia"
+                        ? "umrah-status-tersedia"
+                        : pkg.status === "Promo"
+                        ? "umrah-status-promo"
+                        : "umrah-status-penuh")
+                    }
+                  >
+                    {pkg.status}
+                  </span>
+                </div>
+              </button>
+            ))}
+
+            {filteredPackages.length === 0 && (
+              <p className="umrah-empty">
+                Tidak ada paket untuk filter ini. Coba pilih kota lain.
+              </p>
+            )}
+          </div>
+        </section>
+
+        {/* Kanan: detail paket yang dipilih */}
+        <section className="umrah-detail">
+          <h3 className="section-title">Detail Paket</h3>
+          <p className="section-subtitle">
+            Ringkasan detail paket yang sedang dipilih.
+          </p>
+
+          <div className="umrah-detail-card">
+            <h2 className="umrah-detail-name">{selectedPackage.name}</h2>
+            <p className="umrah-detail-price">
+              Rp {selectedPackage.price.toLocaleString("id-ID")}
+            </p>
+
+            <div className="umrah-detail-row">
+              <span className="detail-label">Vendor</span>
+              <span className="detail-value">{selectedPackage.vendor}</span>
+            </div>
+            <div className="umrah-detail-row">
+              <span className="detail-label">Maskapai</span>
+              <span className="detail-value">{selectedPackage.airline}</span>
+            </div>
+            <div className="umrah-detail-row">
+              <span className="detail-label">Durasi</span>
+              <span className="detail-value">{selectedPackage.duration}</span>
+            </div>
+            <div className="umrah-detail-row">
+              <span className="detail-label">Kota Berangkat</span>
+              <span className="detail-value">{selectedPackage.city}</span>
+            </div>
+            <div className="umrah-detail-row">
+              <span className="detail-label">Hotel</span>
+              <span className="detail-value">{selectedPackage.hotel}</span>
+            </div>
+            <div className="umrah-detail-row">
+              <span className="detail-label">Tanggal Berangkat</span>
+              <span className="detail-value">
+                {selectedPackage.departure}
+              </span>
+            </div>
+            <div className="umrah-detail-row">
+              <span className="detail-label">Sisa Kursi</span>
+              <span className="detail-value">
+                {selectedPackage.seatsLeft > 0
+                  ? `${selectedPackage.seatsLeft} kursi`
+                  : "Penuh"}
+              </span>
+            </div>
+
+            <div className="umrah-detail-highlights">
+              <h4>Poin Unggulan Paket</h4>
+              <ul>
+                {selectedPackage.highlights.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
+
+
 
 export default App;
