@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink, Routes, Route } from "react-router-dom";
 import "./App.css";
 
@@ -229,43 +229,84 @@ const umrahPackages = [
 
 
 function App() {
+  // ========== THEME MODE SYSTEM ==========
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") || "dark"
+  );
+
+  const toggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
+
+  useEffect(() => {
+    document.body.setAttribute("data-theme", theme);
+  }, [theme]);
+
+  // =======================================
   return (
     <div className="app-container">
+
+      {/* SIDEBAR */}
       <aside className="sidebar">
         <h1 className="logo">Sumopod Clone</h1>
         <p className="subtitle">Marketing automation demo</p>
 
         <nav className="nav">
-          <NavLink to="/" end className="nav-link">
-            Dashboard
-          </NavLink>
-          <NavLink to="/workflows" className="nav-link">
-            Workflow Builder
-          </NavLink>
-          <NavLink to="/whatsapp-crm" className="nav-link">
-            WhatsApp CRM
-          </NavLink>
-          <NavLink to="/payments" className="nav-link">
-            Payment Gateway
-          </NavLink>
-          <NavLink to="/umrah-marketplace" className="nav-link">
-            Marketplace Umrah
-          </NavLink>
+          <NavLink to="/" end className="nav-link">Dashboard</NavLink>
+          <NavLink to="/workflows" className="nav-link">Workflow Builder</NavLink>
+          <NavLink to="/whatsapp-crm" className="nav-link">WhatsApp CRM</NavLink>
+          <NavLink to="/payments" className="nav-link">Payment Gateway</NavLink>
+          <NavLink to="/umrah-marketplace" className="nav-link">Marketplace Umrah</NavLink>
         </nav>
       </aside>
 
-      <main className="main-content">
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/workflows" element={<WorkflowBuilder />} />
-          <Route path="/whatsapp-crm" element={<WhatsAppCRM />} />
-          <Route path="/payments" element={<Payments />} />
-          <Route path="/umrah-marketplace" element={<UmrahMarketplace />} />
-        </Routes>
-      </main>
+
+      {/* ============================
+          CONTENT WRAPPER (baru)
+         ============================ */}
+      <div className="content-wrapper">
+
+        {/* HEADER */}
+        <header className="app-header">
+          <h2 className="header-title">Sumopod Clone</h2>
+
+          <div className="header-right">
+            <button className="theme-toggle" onClick={toggleTheme}>
+              {theme === "dark" ? "🌞" : "🌙"}
+            </button>
+
+            <div className="header-user">
+              <img src="/avatar.png" className="header-avatar" />
+              <span className="header-username">Hendi</span>
+            </div>
+          </div>
+        </header>
+
+
+        {/* MAIN CONTENT */}
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/workflows" element={<WorkflowBuilder />} />
+            <Route path="/whatsapp-crm" element={<WhatsAppCRM />} />
+            <Route path="/payments" element={<Payments />} />
+            <Route path="/umrah-marketplace" element={<UmrahMarketplace />} />
+          </Routes>
+        </main>
+
+
+        {/* FOOTER */}
+        <footer className="app-footer">
+          © 2025 Sumopod Clone • Demo Portfolio
+        </footer>
+
+      </div> {/* END WRAPPER */}
     </div>
   );
 }
+
 
 // ====== Halaman-halaman dasar (nanti kita isi lebih dalam) ======
 

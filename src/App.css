@@ -1,3 +1,132 @@
+/* =====================================================
+   ROOT THEME SYSTEM (Dark / Light)
+===================================================== */
+:root {
+  --bg: #020617;
+  --bg-card: #0f172a;
+  --text: #e2e8f0;
+  --text-light: #94a3b8;
+  --border: rgba(255,255,255,0.08);
+}
+
+body[data-theme="light"] {
+  --bg: #f4f6f8;
+  --bg-card: #ffffff;
+  --text: #1e293b;
+  --text-light: #64748b;
+  --border: rgba(0,0,0,0.1);
+}
+
+/* GLOBAL APPLY */
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.25s ease;
+  margin: 0;
+}
+
+/* =====================================================
+   FIX GLOBAL LAYOUT
+===================================================== */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 1.5rem 2rem;
+  overflow-y: auto;
+}
+
+/* =====================================================
+   HEADER (sticky top)
+===================================================== */
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 60px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 22px;
+  backdrop-filter: blur(6px);
+}
+
+.header-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.theme-toggle {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+/* User area */
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: 2px solid #22c55e;
+}
+
+.header-username {
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+/* =====================================================
+   FOOTER (always bottom)
+===================================================== */
+
+.app-footer {
+  margin-top: 40px;
+  padding: 18px 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-light);
+  border-top: 1px solid var(--border);
+  background: var(--bg-card);
+}
+
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 230px;  /* match dengan sidebar width */
+}
+
+.main-content {
+  flex: 1;
+}
+
 .app-container {
   display: flex;
   min-height: 100vh;
@@ -7,12 +136,7 @@
     sans-serif;
 }
 
-.sidebar {
-  width: 260px;
-  padding: 1.5rem;
-  background: #020617;
-  border-right: 1px solid #1e293b;
-}
+
 
 .logo {
   font-size: 1.4rem;
@@ -1795,7 +1919,65 @@
   color: #ffc38f;
 }
 
+/* ================================
+   SIDEBAR PREMIUM (FINAL)
+================================ */
+.sidebar {
+  width: 230px;
+  background: #020817;
+  padding: 30px 22px;
+  border-right: 1px solid rgba(255,255,255,0.06);
 
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;     /* agar full tinggi layar */
+  overflow-y: auto;  /* kalau menu panjang tetap bisa discroll */
+  z-index: 100;      /* agar tidak ketutup */
+}
+
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 13px;
+  opacity: 0.5;
+  margin-bottom: 30px;
+}
+
+/* NAV */
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-link {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #cbd5e1;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+.nav-link:hover {
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+}
+
+/* ACTIVE MENU */
+.nav-link.active {
+  background: #17c964;  /* green premium */
+  color: #000;
+  font-weight: 600;
+  box-shadow: 0 0 0 2px rgba(23,201,100,0.4);
+}
 
 
 
