@@ -844,3 +844,958 @@
 }
 
 
+/* === Dashboard Redesign === */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+.dashboard-card {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.8rem;
+  background: linear-gradient(135deg, #020617, #0f172a);
+  border: 1px solid #1e293b;
+  border-radius: 0.9rem;
+  padding: 1rem;
+  text-decoration: none;
+  color: #e2e8f0;
+  transition: all 0.25s ease;
+}
+
+.dashboard-card:hover {
+  border-color: #22c55e;
+  background: linear-gradient(135deg, #022c22, #064e3b);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.25);
+}
+
+.dashboard-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.dashboard-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin: 0;
+}
+
+.dashboard-desc {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin: 0.3rem 0 0;
+}
+
+/* ====== Stats Cards ====== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin: 25px 0;
+}
+
+.stat-card {
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+}
+
+.stat-value {
+  font-size: 26px;
+  font-weight: bold;
+  color: #222;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* ====== Mini Chart ====== */
+.chart-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.chart-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.mini-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 100px;
+  padding: 5px 0;
+}
+
+.mini-bar {
+  width: 18px;
+  background: linear-gradient(180deg, #4facfe, #00c6ff);
+  border-radius: 4px;
+  transition: 0.3s ease;
+}
+
+.mini-bar:hover {
+  opacity: 0.8;
+}
+
+/* ====== Animations ====== */
+.fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.slide-up {
+  animation: slideUp 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.mt-30 {
+  margin-top: 40px;
+}
+
+/* ===== PREMIUM DASHBOARD STYLING ===== */
+
+/* Statistic Cards */
+.stat-card {
+  background: linear-gradient(145deg, #111827, #0f172a);
+  border: 1px solid rgba(255,255,255,0.05);
+  padding: 22px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+  transition: 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.45);
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.stat-label {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+/* Chart Card */
+.chart-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 24px;
+  border-radius: 20px;
+  margin-top: 18px;
+  box-shadow: inset 0 0 25px rgba(255,255,255,0.03);
+  backdrop-filter: blur(6px);
+}
+
+.chart-title {
+  color: #cbd5e1;
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+/* Mini Chart Glow */
+.mini-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  height: 120px;
+}
+
+.mini-bar {
+  width: 22px;
+  border-radius: 7px;
+  background: linear-gradient(180deg, #38bdf8, #0ea5e9);
+  box-shadow: 0 4px 12px rgba(14,165,233,0.45);
+  transition: 0.25s ease;
+}
+
+.mini-bar:hover {
+  transform: translateY(-5px);
+  opacity: 0.9;
+}
+
+/* Dashboard main cards */
+.dashboard-card {
+  background: linear-gradient(145deg,#111827,#0f172a);
+  border: 1px solid rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  transition: 0.25s ease;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.dashboard-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255,255,255,0.15);
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Membuat ukuran chart lebih kecil dan tidak melebar */
+.small-chart {
+  max-width: 480px;
+}
+
+/* Membuat chart berada di kiri dan tidak mengisi seluruh layar */
+.chart-card {
+  max-width: 520px;
+}
+
+/* Subjudul chart */
+.chart-subtitle {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: -4px;
+}
+
+/* Header chart rapih */
+.chart-header {
+  margin-bottom: 10px;
+}
+
+/* ============================================
+   WORKFLOW BUILDER — PREMIUM DARK UI
+   ============================================ */
+
+/* === Panel kiri, tengah, kanan === */
+.workflow-column {
+  background: linear-gradient(145deg, #0f172a, #020617);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+  backdrop-filter: blur(4px);
+  transition: 0.25s ease;
+}
+
+.workflow-column:hover {
+  border-color: rgba(255,255,255,0.12);
+}
+
+/* === Node item di panel kiri === */
+.node-item {
+  background: linear-gradient(145deg, #111827, #0f172a);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 14px;
+  border-radius: 14px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+  transition: 0.25s ease;
+}
+
+.node-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(34,197,94,0.3); /* green glow */
+}
+
+/* Label node (Trigger, WhatsApp, Delay, dsb) */
+.node-label {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Label warna lebih premium */
+.pill-trigger { background: #22c55e; color: #022c22; }
+.pill-whatsapp { background: #38bdf8; color: #082f49; }
+.pill-condition { background: #facc15; color: #422006; }
+.pill-delay { background: #818cf8; color: #1e1b4b; }
+.pill-payment { background: #fb923c; color: #7c2d12; }
+
+/* === Workflow Canvas (tengah) === */
+.workflow-step {
+  background: #0b1220;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  transition: 0.3s ease;
+}
+
+.workflow-step:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,0.16);
+}
+
+/* Step title */
+.workflow-step-title {
+  font-size: 1rem;
+  color: #f1f5f9;
+  margin: 8px 0;
+  font-weight: 600;
+}
+
+/* Step description */
+.workflow-step-description {
+  color: #9ca3af;
+  font-size: 0.85rem;
+}
+
+/* Arrow between nodes */
+.workflow-arrow {
+  text-align: center;
+  color: #64748b;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 10px 0;
+  opacity: 0.7;
+}
+
+/* === Panel kanan (Detail Workflow) === */
+.detail-card {
+  background: #0b1220;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 15px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  transition: 0.25s ease;
+}
+
+.detail-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,0.15);
+}
+
+/* === Section titles selaras dengan dashboard === */
+.section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.section-subtitle {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+}
+
+/* === Grid spacing untuk layout workflow === */
+.workflow-layout {
+  gap: 20px;
+  margin-top: 15px;
+}
+
+/* ============= HORIZONTAL WORKFLOW CANVAS ============= */
+
+.workflow-canvas {
+  display: flex;
+  flex-direction: row;          /* Ubah dari column → row */
+  gap: 30px;
+  overflow-x: auto;             /* Horizontal scroll only if needed */
+  padding-bottom: 10px;
+  padding-top: 10px;
+  scroll-behavior: smooth;
+}
+
+/* Step card */
+.workflow-step {
+  min-width: 260px;             /* Lebih kecil supaya muat banyak */
+  max-width: 260px;
+  background: linear-gradient(145deg, #0b1220, #0f172a);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 14px 16px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  flex-shrink: 0;               /* Jangan mengecil otomatis */
+  position: relative;
+}
+
+/* Arrow horizontal */
+.workflow-arrow {
+  font-size: 20px;
+  color: #64748b;
+  opacity: 0.6;
+  text-align: center;
+  margin: 0;
+  align-self: center;
+}
+
+/* Arrow sebagai icon inline (→) */
+.workflow-arrow::after {
+  content: "→";
+  font-size: 26px;
+  font-weight: bold;
+  color: #94a3b8;
+}
+
+/* Hilangkan arrow lama (↓) */
+.workflow-step + .workflow-arrow {
+  margin-left: -10px;
+}
+
+/* Responsive: mobile kembali vertical */
+@media (max-width: 720px) {
+  .workflow-canvas {
+    flex-direction: column;
+  }
+  .workflow-arrow::after {
+    content: "↓";
+  }
+}
+
+/* ===========================
+   NEW WORKFLOW 3-ROW LAYOUT
+   =========================== */
+.workflow-layout-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+/* Baris workflow */
+.workflow-row {
+  background: linear-gradient(145deg, #0f172a, #020617);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+}
+
+/* ===========================
+   Row 1 — Node Library Horizontal
+   =========================== */
+.node-list-horizontal {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  flex-wrap: wrap;   /* Supaya tidak overflow ke samping */
+}
+
+.node-item {
+  min-width: 200px;
+  max-width: 240px;
+}
+
+/* ===========================
+  Row 2 — Workflow Canvas Horizontal
+   =========================== */
+.workflow-canvas-horizontal {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  flex-wrap: wrap;   /* Ini yg bikin TIDAK SCROLL ke kanan */
+}
+
+.workflow-step-horizontal {
+  min-width: 240px;
+  max-width: 260px;
+  background: #0b1220;
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+}
+
+/* Hilangkan scrollbar */
+.workflow-canvas-horizontal::-webkit-scrollbar,
+.node-list-horizontal::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================================================
+   WHATSAPP CRM — LAYOUT UTAMA
+========================================================= */
+
+.wacr-layout {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  height: 75vh;
+}
+
+/* =========================================================
+   SIDEBAR KONTAK
+========================================================= */
+
+.wacr-sidebar {
+  width: 320px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.wacr-sidebar-header {
+  margin-bottom: 10px;
+}
+
+.wacr-search {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  margin-bottom: 15px;
+}
+
+.wacr-search::placeholder {
+  color: #bbb;
+}
+
+.wacr-contact-list {
+  overflow-y: auto;
+  flex-grow: 1;
+  padding-right: 5px;
+}
+
+/* =========================================================
+   ITEM KONTAK
+========================================================= */
+
+.wacr-contact-item {
+  width: 100%;
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  margin-bottom: 10px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.wacr-contact-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.wacr-contact-item.active {
+  background: rgba(0, 200, 120, 0.18);
+  border: 1px solid #00c878;
+}
+
+.wacr-contact-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.wacr-contact-last {
+  font-size: 13px;
+  color: #cccccc;
+  opacity: 0.7;
+}
+
+.wacr-contact-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.wacr-status {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* =========================================================
+   TAG LEAD STATUS
+========================================================= */
+
+.wacr-tag {
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: black;
+}
+
+/* Warna otomatis berdasarkan tag */
+.tag-leadbaru {
+  background: #4ade80; /* hijau lembut */
+}
+
+.tag-prospekhangat {
+  background: #facc15; /* kuning */
+}
+
+.tag-customer {
+  background: #60a5fa; /* biru */
+}
+
+/* =========================================================
+   AREA CHAT
+========================================================= */
+
+.wacr-chat {
+  flex-grow: 1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* =========================================================
+   HEADER CHAT
+========================================================= */
+
+.wacr-chat-header {
+  padding: 18px 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.wacr-chat-name {
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.wacr-chat-info {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* =========================================================
+   BODY CHAT
+========================================================= */
+
+.wacr-chat-body {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* ROW BUBBLE */
+.wacr-chat-row {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.wacr-chat-row.customer {
+  justify-content: flex-start;
+}
+
+.wacr-chat-row.agent {
+  justify-content: flex-end;
+}
+
+/* BUBBLE */
+.wacr-bubble {
+  max-width: 60%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  position: relative;
+}
+
+.wacr-chat-row.customer .wacr-bubble {
+  background: #1f2937;
+  color: white;
+  border-bottom-left-radius: 4px;
+}
+
+.wacr-chat-row.agent .wacr-bubble {
+  background: #22c55e;
+  color: black;
+  border-bottom-right-radius: 4px;
+}
+
+/* TEKS */
+.wacr-text {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.wacr-time {
+  font-size: 11px;
+  opacity: 0.7;
+  margin-top: 5px;
+  text-align: right;
+}
+
+/* =========================================================
+   INPUT KIRIM PESAN
+========================================================= */
+
+.wacr-input-area {
+  padding: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.wacr-input {
+  flex-grow: 1;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+.wacr-input::placeholder {
+  color: #bbb;
+}
+
+.wacr-send {
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: #22c55e;
+  color: black;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.wacr-send:hover {
+  background: #16a34a;
+}
+
+/* =========================================================
+  RESPONSIVE MODE
+========================================================= */
+
+@media (max-width: 900px) {
+  .wacr-layout {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .wacr-sidebar {
+    width: 100%;
+    height: auto;
+  }
+
+  .wacr-chat {
+    height: 70vh;
+  }
+}
+
+/* ============================================================
+   PAYMENT GATEWAY — LAYOUT UTAMA
+============================================================ */
+.payments-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr 330px;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+/* ============================================================
+   KOLOM KIRI — PROFIL NEGARA
+============================================================ */
+.payments-column {
+  background: #0f1623;
+  border: 1px solid #1e2a3a;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.payment-profile-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.payment-profile-item {
+  background: #111a28;
+  border: 1px solid #1e2a3a;
+  padding: 14px;
+  border-radius: 10px;
+  color: #dce5f3;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  transition: 0.2s;
+}
+
+.payment-profile-item:hover {
+  background: #152031;
+}
+
+.payment-profile-item-active {
+  background: #0d3d24 !important;
+  border-color: #1f5a37 !important;
+}
+
+/* teks */
+.payment-profile-country {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.payment-profile-gateway {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.payment-pill {
+  background: #183447;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.payment-fees {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+/* ============================================================
+   KOLOM TENGAH — DETAIL PROFIL
+============================================================ */
+.payment-detail-card {
+  background: #0c121c;
+  border: 1px solid #1f2c40;
+  border-radius: 12px;
+  padding: 18px;
+  margin-top: 16px;
+}
+
+.payment-detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-size: 15px;
+  color: #cdd6e5;
+  border-bottom: 1px solid #16202d;
+}
+
+.payment-detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  opacity: 0.75;
+}
+
+.payment-info-note {
+  margin-top: 14px;
+  font-size: 13px;
+  opacity: 0.75;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   KOLOM KANAN — METODE PEMBAYARAN
+============================================================ */
+.payment-method-list {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.payment-method-item {
+  background: #111a28;
+  border: 1px solid #1e2a3a;
+  padding: 16px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.payment-method-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-method-type {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.payment-method-label {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* status badge */
+.payment-method-status {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.payment-method-status-active {
+  background: #0d3d24;
+  color: #7fffc3;
+}
+
+.payment-method-status-planned {
+  background: #2f243d;
+  color: #d58cff;
+}
+
+.payment-method-status-manual {
+  background: #3d2a1f;
+  color: #ffc38f;
+}
+
+
+
+
+

@@ -228,9 +228,6 @@ const umrahPackages = [
 ];
 
 
-
-
-
 function App() {
   return (
     <div className="app-container">
@@ -273,32 +270,98 @@ function App() {
 // ====== Halaman-halaman dasar (nanti kita isi lebih dalam) ======
 
 function Dashboard() {
+  // Dummy stats
+  const stats = [
+    { label: "Leads Baru Hari Ini", value: 24 },
+    { label: "Pesan Masuk", value: 112 },
+    { label: "Pembayaran Masuk", value: 7 },
+    { label: "Paket Terjual", value: 3 },
+  ];
+
+  // Dummy mini chart (jumlah chat 7 hari)
+  const chatActivity = [12, 18, 14, 22, 30, 25, 19];
+
   return (
-    <div>
+    <div className="dashboard-wrapper fade-in">
       <h2 className="page-title">Dashboard</h2>
       <p className="page-description">
-        Ini adalah contoh platform otomatisasi pemasaran mirip Sumopod.
-        Gunakan menu di samping untuk melihat Workflow Builder, WhatsApp CRM,
-        Payment Gateway, dan Marketplace Umrah.
+        Ringkasan aktivitas marketing automation & CRM kamu.
       </p>
 
-      <div className="card-grid">
-        <div className="card">
-          <h3>Workflow Builder</h3>
-          <p>Bangun alur automation seperti n8n untuk kampanye marketing.</p>
+      {/* ========== Statistik Cards ========== */}
+      <div className="stats-grid">
+        {stats.map((item, idx) => (
+          <div key={idx} className="stat-card slide-up">
+            <div className="stat-value">{item.value}</div>
+            <div className="stat-label">{item.label}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* ========== Mini Chart ========== */}
+      <div className="chart-card slide-up">
+
+        <div className="chart-header">
+          <div>
+            <h3 className="chart-title">Aktivitas Chat Masuk (7 Hari)</h3>
+            <p className="chart-subtitle">Total chat minggu ini: 140</p>
+          </div>
         </div>
-        <div className="card">
-          <h3>WhatsApp CRM</h3>
-          <p>Kelola kontak dan percakapan WhatsApp pelanggan kamu.</p>
+
+        <div className="mini-chart small-chart">
+          {chatActivity.map((v, i) => (
+            <div
+              key={i}
+              className="mini-bar"
+              style={{ height: `${v * 3}px` }}
+            ></div>
+          ))}
         </div>
-        <div className="card">
-          <h3>Payment Gateway</h3>
-          <p>Atur metode pembayaran multi negara seperti Hitpay.</p>
-        </div>
-        <div className="card">
-          <h3>Marketplace Umrah</h3>
-          <p>Tampilkan paket Umrah dari berbagai penyedia seperti Safaraya.</p>
-        </div>
+      </div>
+
+
+      {/* Card fitur lama */}
+      <h3 className="section-title mt-30">Modul Utama</h3>
+
+      <div className="dashboard-grid">
+        {[
+          {
+            id: 1,
+            title: "Workflow Builder",
+            desc: "Bangun alur automation seperti n8n.",
+            icon: "⚙️",
+            link: "/workflows",
+          },
+          {
+            id: 2,
+            title: "WhatsApp CRM",
+            desc: "Kelola kontak dan percakapan.",
+            icon: "💬",
+            link: "/whatsapp-crm",
+          },
+          {
+            id: 3,
+            title: "Payment Gateway",
+            desc: "Atur pembayaran multi negara.",
+            icon: "💳",
+            link: "/payments",
+          },
+          {
+            id: 4,
+            title: "Marketplace Umrah",
+            desc: "Jual paket Umrah profesional.",
+            icon: "🕋",
+            link: "/umrah-marketplace",
+          },
+        ].map((f) => (
+          <a key={f.id} href={f.link} className="dashboard-card fade-in">
+            <div className="dashboard-icon">{f.icon}</div>
+            <div>
+              <h3 className="dashboard-title">{f.title}</h3>
+              <p className="dashboard-desc">{f.desc}</p>
+            </div>
+          </a>
+        ))}
       </div>
     </div>
   );
@@ -314,41 +377,57 @@ function WorkflowBuilder() {
         kirim WhatsApp, cek respon, sampai kirim link pembayaran.
       </p>
 
-      <div className="workflow-layout">
-        {/* Panel kiri: library node */}
-        <section className="workflow-column">
+      {/* ============================================
+          WORKFLOW LAYOUT (3 ROW)
+      ============================================= */}
+      <div className="workflow-layout-vertical">
+
+        {/* =======================
+            ROW 1 — NODE LIBRARY
+        ======================== */}
+        <section className="workflow-row">
           <h3 className="section-title">Node Library</h3>
           <p className="section-subtitle">
             Drag & drop (secara konsep) node ini ke canvas untuk membangun
             automation. Di sini kita tampilkan sebagai daftar contoh.
           </p>
 
-          <div className="node-list">
+          <div className="node-list-horizontal">
+
             <div className="node-item node-trigger">
-              <span className="node-label">Trigger</span>
+              <span className="node-label pill pill-trigger">Trigger</span>
               <p>Lead baru dari form, webhook, atau integrasi lain.</p>
             </div>
+
             <div className="node-item node-whatsapp">
-              <span className="node-label">WhatsApp</span>
+              <span className="node-label pill pill-whatsapp">WhatsApp</span>
               <p>Kirim pesan broadcast, template, atau balasan otomatis.</p>
             </div>
+
             <div className="node-item node-condition">
-              <span className="node-label">Condition</span>
+              <span className="node-label pill pill-condition">Condition</span>
               <p>Cek apakah user membalas, klik link, atau memenuhi syarat.</p>
             </div>
+
             <div className="node-item node-delay">
-              <span className="node-label">Delay</span>
+              <span className="node-label pill pill-delay">Delay</span>
               <p>Tunda beberapa menit/jam/hari sebelum step berikutnya.</p>
             </div>
+
             <div className="node-item node-payment">
-              <span className="node-label">Payment</span>
-              <p>Kirim link pembayaran atau cek status transaksi.</p>
+              <span className="node-label pill pill-payment">Payment</span>
+              <p>
+                Kirim link pembayaran atau cek status transaksi pelanggan.
+              </p>
             </div>
+
           </div>
         </section>
 
-        {/* Canvas tengah: visual workflow */}
-        <section className="workflow-column">
+        {/* =======================
+            ROW 2 — CANVAS WORKFLOW
+        ======================== */}
+        <section className="workflow-row">
           <h3 className="section-title">Canvas Workflow</h3>
           <p className="section-subtitle">
             Ilustrasi alur otomatisasi pemasaran. Di versi production,
@@ -357,29 +436,32 @@ function WorkflowBuilder() {
             untuk portofolio.
           </p>
 
-          <div className="workflow-canvas">
+          <div className="workflow-canvas-horizontal">
             {workflowSteps.map((step, index) => (
-              <div key={step.id} className="workflow-step">
+              <div key={step.id} className="workflow-step-horizontal">
+
                 <div className="workflow-step-header">
                   <span className={`node-label pill pill-${step.label.toLowerCase()}`}>
                     {step.label}
                   </span>
                   <span className="step-number">Step {index + 1}</span>
                 </div>
+
                 <h4 className="workflow-step-title">{step.title}</h4>
+
                 <p className="workflow-step-description">
                   {step.description}
                 </p>
-                {index < workflowSteps.length - 1 && (
-                  <div className="workflow-arrow">↓</div>
-                )}
+
               </div>
             ))}
           </div>
         </section>
 
-        {/* Panel kanan: detail workflow */}
-        <section className="workflow-column">
+        {/* =======================
+            ROW 3 — DETAIL WORKFLOW
+        ======================== */}
+        <section className="workflow-row">
           <h3 className="section-title">Detail Workflow</h3>
           <p className="section-subtitle">
             Ringkasan konfigurasi workflow untuk ditunjukkan ke HR / client
@@ -407,7 +489,9 @@ function WorkflowBuilder() {
               konsep node dan step yang jelas.
             </p>
           </div>
+
         </section>
+
       </div>
     </div>
   );
@@ -418,26 +502,22 @@ function WhatsAppCRM() {
   const [chatsByContact, setChatsByContact] = useState(initialChatsByContact);
   const [messageInput, setMessageInput] = useState("");
 
-  const selectedContact = whatsappContacts.find(
-    (c) => c.id === selectedId
-  );
-
+  const selectedContact = whatsappContacts.find(c => c.id === selectedId);
   const messages = chatsByContact[selectedId] || [];
 
   const handleSendMessage = (e) => {
     e.preventDefault();
-    const trimmed = messageInput.trim();
-    if (!trimmed) return;
+    if (!messageInput.trim()) return;
 
     const newMessage = {
       from: "agent",
-      text: trimmed,
+      text: messageInput.trim(),
       time: "Sekarang",
     };
 
-    setChatsByContact((prev) => ({
+    setChatsByContact(prev => ({
       ...prev,
-      [selectedId]: [...(prev[selectedId] || []), newMessage],
+      [selectedId]: [...prev[selectedId], newMessage]
     }));
 
     setMessageInput("");
@@ -448,13 +528,15 @@ function WhatsAppCRM() {
       <h2 className="page-title">WhatsApp CRM</h2>
       <p className="page-description">
         Contoh tampilan CRM untuk mengelola kontak dan percakapan WhatsApp.
-        Ini hanya data dummy, tapi cukup untuk mendemokan fitur ke HR / client.
+        Dirancang menyerupai WhatsApp Web versi SaaS untuk portofolio kamu.
       </p>
 
-      <div className="whatsapp-layout">
-        {/* Sidebar kontak */}
-        <section className="whatsapp-sidebar">
-          <div className="whatsapp-sidebar-header">
+      <div className="wacr-layout">
+        
+        {/* ======================== SIDEBAR KONTAK ======================== */}
+        <aside className="wacr-sidebar">
+
+          <div className="wacr-sidebar-header">
             <h3 className="section-title">Kontak</h3>
             <p className="section-subtitle">
               Daftar lead dan customer yang terhubung via WhatsApp.
@@ -463,101 +545,84 @@ function WhatsAppCRM() {
 
           <input
             type="text"
-            placeholder="Cari nama atau nomor..."
-            className="whatsapp-search"
+            placeholder="🔍 Cari nama atau nomor..."
+            className="wacr-search"
           />
 
-          <div className="whatsapp-contact-list">
-            {whatsappContacts.map((contact) => (
+          <div className="wacr-contact-list">
+            {whatsappContacts.map(contact => (
               <button
                 key={contact.id}
-                className={
-                  "contact-item" +
-                  (contact.id === selectedId ? " contact-item-active" : "")
-                }
                 onClick={() => setSelectedId(contact.id)}
+                className={
+                  "wacr-contact-item" +
+                  (selectedId === contact.id ? " active" : "")
+                }
               >
-                <div className="contact-main">
-                  <div className="contact-name">{contact.name}</div>
-                  <div className="contact-last-message">
-                    {contact.lastMessage}
-                  </div>
+                <div>
+                  <div className="wacr-contact-name">{contact.name}</div>
+                  <div className="wacr-contact-last">{contact.lastMessage}</div>
                 </div>
-                <div className="contact-meta">
-                  <span className="contact-tag">{contact.tag}</span>
-                  <span className="contact-status">{contact.status}</span>
+
+                <div className="wacr-contact-meta">
+                  <span className={"wacr-tag tag-" + contact.tag.replace(" ", "").toLowerCase()}>
+                    {contact.tag}
+                  </span>
+                  <span className="wacr-status">{contact.status}</span>
                 </div>
               </button>
             ))}
           </div>
-        </section>
 
-        {/* Area chat */}
-        <section className="whatsapp-chat">
-          <div className="whatsapp-chat-header">
+        </aside>
+
+        {/* ======================== CHAT AREA ======================== */}
+        <section className="wacr-chat">
+
+          <header className="wacr-chat-header">
             <div>
-              <div className="chat-contact-name">
-                {selectedContact?.name}
-              </div>
-              <div className="chat-contact-info">
-                {selectedContact?.phone} · {selectedContact?.tag}
+              <div className="wacr-chat-name">{selectedContact.name}</div>
+              <div className="wacr-chat-info">
+                {selectedContact.phone} • {selectedContact.tag}
               </div>
             </div>
             <div className="chat-status-pill">Online</div>
-          </div>
+          </header>
 
-          <div className="whatsapp-chat-body">
-            {messages.length === 0 && (
-              <div className="chat-empty">
-                Belum ada percakapan. Mulai kirim pesan ke pelanggan ini.
-              </div>
-            )}
-
-            {messages.map((msg, index) => (
+          <div className="wacr-chat-body">
+            {messages.map((msg, i) => (
               <div
-                key={index}
+                key={i}
                 className={
-                  "chat-bubble-row " +
-                  (msg.from === "agent"
-                    ? "chat-bubble-row-agent"
-                    : "chat-bubble-row-customer")
+                  "wacr-chat-row " +
+                  (msg.from === "agent" ? "agent" : "customer")
                 }
               >
-                <div
-                  className={
-                    "chat-bubble " +
-                    (msg.from === "agent"
-                      ? "chat-bubble-agent"
-                      : "chat-bubble-customer")
-                  }
-                >
-                  <div className="chat-text">{msg.text}</div>
-                  <div className="chat-time">{msg.time}</div>
+                <div className="wacr-bubble">
+                  <div className="wacr-text">{msg.text}</div>
+                  <div className="wacr-time">{msg.time}</div>
                 </div>
               </div>
             ))}
           </div>
 
-          <form
-            className="whatsapp-chat-input-area"
-            onSubmit={handleSendMessage}
-          >
+          <form className="wacr-input-area" onSubmit={handleSendMessage}>
             <input
               type="text"
-              className="whatsapp-chat-input"
-              placeholder="Ketik pesan untuk pelanggan..."
+              className="wacr-input"
+              placeholder="Ketik pesan..."
               value={messageInput}
               onChange={(e) => setMessageInput(e.target.value)}
             />
-            <button type="submit" className="whatsapp-send-button">
-              Kirim
-            </button>
+            <button className="wacr-send">Kirim</button>
           </form>
+
         </section>
       </div>
     </div>
   );
 }
+
 
 function Payments() {
   const [selectedProfileId, setSelectedProfileId] = useState("sg");
