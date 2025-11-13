@@ -1979,5 +1979,91 @@ body {
   box-shadow: 0 0 0 2px rgba(23,201,100,0.4);
 }
 
+/* =======================
+   PREMIUM FOOTER — SLIM VERSION
+   ======================= */
+.mega-footer {
+  width: 100%;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  padding: 25px 35px 22px;   /* <— DIPENDEKIN */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;                 /* <— gap lebih kecil */
+  color: var(--text-light);
+  margin-top: 35px;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 -4px 22px rgba(0, 0, 0, 0.18); /* lebih halus */
+}
+
+.footer-section h4 {
+  font-size: 15px;           /* lebih kecil */
+  font-weight: 600;
+  margin-bottom: 8px;        /* lebih rapat */
+  color: var(--text);
+}
+
+.footer-section a {
+  display: block;
+  margin: 4px 0;             /* lebih rapat */
+  font-size: 13px;           /* lebih kecil */
+  color: var(--text-light);
+  opacity: 0.85;
+  transition: 0.25s ease;
+}
+
+.footer-section a:hover {
+  color: var(--text);
+  transform: translateX(3px);
+  opacity: 1;
+}
+
+/* Bagian bawah dibikin lebih ramping */
+.footer-bottom {
+  grid-column: span 3;
+  text-align: center;
+  margin-top: 15px;          /* lebih kecil */
+  padding-top: 10px;         /* lebih kecil */
+  font-size: 12.5px;
+  border-top: 1px solid var(--border);
+  color: var(--text-light);
+  opacity: 0.7;
+}
+
+/* FIX GAP HITAM DI BAWAH FOOTER */
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--bg); /* samain warna background global */
+}
+
+.app-container {
+  display: flex;
+  min-height: 100vh; /* supaya sidebar dan content full tinggi */
+  background: var(--bg); /* hilangkan warna hitam mengganggu */
+}
+
+/* pastikan content wrapper ikut memanjang */
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+/* pastikan main content mendorong footer ke bawah */
+.main-content {
+  flex: 1;
+  padding-bottom: 30px; /* biar konten nggak mepet footer */
+  background: var(--bg);
+}
+
+/* footer biar nyatu tanpa celah */
+.mega-footer {
+  background: var(--bg-card);
+}
+
+
 
 

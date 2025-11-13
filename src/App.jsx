@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink, Routes, Route } from "react-router-dom";
 import "./App.css";
+import avatar from "./assets/avatar.jpg";
 
 
 const workflowSteps = [
@@ -251,7 +252,7 @@ function App() {
       {/* SIDEBAR */}
       <aside className="sidebar">
         <h1 className="logo">Sumopod Clone</h1>
-        <p className="subtitle">Marketing automation demo</p>
+        <p className="subtitle">Marketing automation</p>
 
         <nav className="nav">
           <NavLink to="/" end className="nav-link">Dashboard</NavLink>
@@ -273,12 +274,12 @@ function App() {
           <h2 className="header-title">Sumopod Clone</h2>
 
           <div className="header-right">
-            <button className="theme-toggle" onClick={toggleTheme}>
+            {/* <button className="theme-toggle" onClick={toggleTheme}>
               {theme === "dark" ? "🌞" : "🌙"}
-            </button>
+            </button> */}
 
             <div className="header-user">
-              <img src="/avatar.png" className="header-avatar" />
+              <img src={avatar} className="header-avatar" />
               <span className="header-username">Hendi</span>
             </div>
           </div>
@@ -298,9 +299,39 @@ function App() {
 
 
         {/* FOOTER */}
-        <footer className="app-footer">
-          © 2025 Sumopod Clone • Demo Portfolio
+        <footer className="mega-footer">
+          <div className="footer-section">
+            <h4>Platform</h4>
+            <a href="#">Dashboard</a>
+            <a href="#">Automation</a>
+            <a href="#">WhatsApp CRM</a>
+            <a href="#">Payments</a>
+            <a href="#">Marketplace</a>
+          </div>
+
+          <div className="footer-section">
+            <h4>Company</h4>
+            <a href="#">About Us</a>
+            <a href="#">Careers</a>
+            <a href="#">Press</a>
+            <a href="#">Contact</a>
+          </div>
+
+          <div className="footer-section">
+            <h4>Support</h4>
+            <a href="#">Help Center</a>
+            <a href="#">Documentation</a>
+            <a href="#">FAQ</a>
+            <a href="#">API Status</a>
+          </div>
+
+          <div className="footer-bottom">
+            © 2025 Sumopod Clone — All Rights Reserved
+          </div>
         </footer>
+
+
+
 
       </div> {/* END WRAPPER */}
     </div>
@@ -413,7 +444,7 @@ function WorkflowBuilder() {
     <div>
       <h2 className="page-title">Workflow Builder</h2>
       <p className="page-description">
-        Contoh tampilan workflow automation seperti n8n. Workflow ini
+        Workflow ini
         menggambarkan alur otomatisasi pemasaran: mulai dari lead baru,
         kirim WhatsApp, cek respon, sampai kirim link pembayaran.
       </p>
@@ -429,8 +460,8 @@ function WorkflowBuilder() {
         <section className="workflow-row">
           <h3 className="section-title">Node Library</h3>
           <p className="section-subtitle">
-            Drag & drop (secara konsep) node ini ke canvas untuk membangun
-            automation. Di sini kita tampilkan sebagai daftar contoh.
+            node ini ke canvas untuk membangun
+            automation.
           </p>
 
           <div className="node-list-horizontal">
@@ -473,8 +504,7 @@ function WorkflowBuilder() {
           <p className="section-subtitle">
             Ilustrasi alur otomatisasi pemasaran. Di versi production,
             user bisa mengatur posisi node, menghubungkan garis, dan
-            menjalankan workflow. Di sini kita tampilkan contoh statis
-            untuk portofolio.
+            menjalankan workflow.
           </p>
 
           <div className="workflow-canvas-horizontal">
@@ -505,8 +535,7 @@ function WorkflowBuilder() {
         <section className="workflow-row">
           <h3 className="section-title">Detail Workflow</h3>
           <p className="section-subtitle">
-            Ringkasan konfigurasi workflow untuk ditunjukkan ke HR / client
-            bahwa kamu paham konsep marketing automation.
+            Ringkasan konfigurasi workflow.
           </p>
 
           <div className="detail-card">
@@ -523,11 +552,9 @@ function WorkflowBuilder() {
           </div>
 
           <div className="detail-card">
-            <h4>Tujuan Fitur</h4>
+            <h4>Tujuan</h4>
             <p className="detail-text">
-              Menunjukkan kemampuan kamu sebagai web developer untuk
-              mendesain UI workflow builder yang mirip n8n / Make, dengan
-              konsep node dan step yang jelas.
+              Menunjukkan penjelasan secara detil.
             </p>
           </div>
 
@@ -568,8 +595,7 @@ function WhatsAppCRM() {
     <div>
       <h2 className="page-title">WhatsApp CRM</h2>
       <p className="page-description">
-        Contoh tampilan CRM untuk mengelola kontak dan percakapan WhatsApp.
-        Dirancang menyerupai WhatsApp Web versi SaaS untuk portofolio kamu.
+        Tampilan WhatsApp CRM untuk mengelola kontak dan percakapan WhatsApp.
       </p>
 
       <div className="wacr-layout">
@@ -676,7 +702,6 @@ function Payments() {
     <div>
       <h2 className="page-title">Payment Gateway</h2>
       <p className="page-description">
-        Contoh konfigurasi payment gateway multi negara seperti Hitpay.
         Halaman ini menunjukkan bagaimana platform mengatur negara, mata
         uang, dan metode pembayaran untuk bisnis Umrah.
       </p>
@@ -754,8 +779,7 @@ function Payments() {
           <div className="payment-info-note">
             Catatan: di sistem production, halaman ini biasanya terhubung ke
             API gateway (Hitpay, Midtrans, HyperPay, dll) untuk mengaktifkan
-            atau menonaktifkan metode pembayaran secara real-time. Di sini
-            kita tampilkan versi demo untuk portofolio.
+            atau menonaktifkan metode pembayaran secara real-time.
           </div>
         </section>
 
@@ -797,7 +821,7 @@ function Payments() {
             <strong>Planned</strong> = dalam tahap pengembangan.
             <br />
             <strong>Manual</strong> = proses masih dilakukan secara manual
-            (contoh: cash on arrival).
+            (cash on arrival).
           </div>
         </section>
       </div>
@@ -823,7 +847,7 @@ function UmrahMarketplace() {
     <div>
       <h2 className="page-title">Marketplace Umrah</h2>
       <p className="page-description">
-        Contoh tampilan marketplace paket Umrah. Pilih paket di sebelah kiri
+        Pilih paket di sebelah kiri dan
         untuk melihat detail lengkap di panel kanan.
       </p>
 
